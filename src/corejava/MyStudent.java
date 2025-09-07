@@ -1,6 +1,8 @@
 
 package corejava;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Sohan
@@ -42,6 +44,43 @@ class Student extends Person{
 
 public class MyStudent {
     public static void main(String[] args){
+        Student s = new Student();
+        String name,address;
+        int age;
         
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter name: ");
+        name = sc.next();
+        System.out.println("Enter age: ");
+        age = sc.nextInt();
+        System.out.println("Enter address: ");
+        address = sc.next();        
+        
+        s.setAll(name, address, age);
+        if(s.getAge()>=16){
+           s.setRoll(1);
+        }
+        
+        System.out.println("Name: "+ s.getName());
+        System.out.println("Addrss: "+s.getAddress());
+        System.out.println("Age: "+s.getAge());
+        System.out.println("Roll no: "+s.getRoll());
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

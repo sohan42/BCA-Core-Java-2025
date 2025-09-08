@@ -51,7 +51,6 @@ class Discount{
         return 0.10;
     }
 }
-
 class Visit{
     private double serviceExpense, productExpense;
     Customer c;

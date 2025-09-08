@@ -34,7 +34,7 @@ class Customer{
 }
 
 class Discount{
-    double getServiceDiscount(String getMemberType){
+    static double getServiceDiscount(String getMemberType){
         switch(getMemberType){
             case "preminum":
                 return 0.20;
@@ -47,9 +47,29 @@ class Discount{
         }
     }
     
-    double getProductDiscount(){
+    static double getProductDiscount(){
         return 0.10;
     }
+}
+
+class Visit{
+    private double serviceExpense, productExpense;
+    Customer c;
+    Visit(Customer c){
+        this.c = c;
+    }
+    void setServiceExpense(double serviceExpense){
+        this.serviceExpense = serviceExpense;
+    }
+    double getServiceExpense(){
+        if(c.isMember()){
+            return serviceExpense - Discount.getServiceDiscount(c.getMemberType());
+        }
+        else{
+            return serviceExpense;
+        }
+    }
+    
 }
 
 public class MyDiscount {

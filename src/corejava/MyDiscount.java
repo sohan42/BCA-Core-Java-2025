@@ -37,7 +37,7 @@ class Discount{
     static double getServiceDiscount(String getMemberType){
         switch(getMemberType){
             case "preminum":
-                return 0.20;
+                return 0.2;
             case "gold":
                 return 0.15;
             case "silver":
@@ -46,11 +46,11 @@ class Discount{
                 return 0;
         }
     }
-    
     static double getProductDiscount(){
         return 0.10;
     }
 }
+
 class Visit{
     private double serviceExpense, productExpense;
     Customer c;
@@ -62,17 +62,42 @@ class Visit{
     }
     double getServiceExpense(){
         if(c.isMember()){
-            return serviceExpense - Discount.getServiceDiscount(c.getMemberType());
+            return serviceExpense-(serviceExpense * Discount.getServiceDiscount(c.getMemberType()));
         }
         else{
             return serviceExpense;
         }
     }
-    
+    void setProductExpense(double productExpense){
+        this.productExpense = productExpense;
+    }
+    double getproductExpense(){
+        if(c.isMember()){
+            return productExpense-(productExpense * Discount.getProductDiscount());
+        }
+        else{
+            return productExpense;
+        }
+    }
+    double totalExpense(){
+        return getServiceExpense()+getproductExpense();
+    }
 }
 
 public class MyDiscount {
     public static void main(String[] args){
+        Customer c = new Customer();
+        c.setName("Raj");
+        c.setMember(true);
+        c.setMemberType("gold");
         
+        Visit v = new Visit(c);
+        v.setProductExpense(5000);
+        v.setServiceExpense(8000);
+        
+        System.out.println("Customer name: "+c.getName());
+        System.out.println("Product Expense: "+v.getproductExpense());
+        System.out.println("Service Expense: "+v.getServiceExpense());
+        System.out.println("Total Expense: "+v.totalExpense());
     }
 }

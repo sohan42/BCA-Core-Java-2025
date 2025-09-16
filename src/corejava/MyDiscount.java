@@ -8,6 +8,8 @@
 
 package corejava;
 
+import java.util.Scanner;
+
 class Customer{
     private String name;
     private boolean member;
@@ -87,13 +89,29 @@ class Visit{
 public class MyDiscount {
     public static void main(String[] args){
         Customer c = new Customer();
-        c.setName("Raj");
-        c.setMember(true);
-        c.setMemberType("gold");
+        Scanner sc = new Scanner(System.in);
+        char check;
+        
+        System.out.println("Enter name: ");
+        c.setName(sc.nextLine());
+        
+        System.out.println("Is a member? Enter Y/N");
+        check = sc.next().toLowerCase().charAt(0);
+        if(check=='y'){
+            c.setMember(true);
+        }
+        else{
+            c.setMember(false);
+        }
+        
+        System.out.println("Enter membership type premium/gold/silver/");
+        c.setMemberType(sc.next().toLowerCase());
         
         Visit v = new Visit(c);
-        v.setProductExpense(5000);
-        v.setServiceExpense(8000);
+        System.out.println("Enter product expense: ");
+        v.setProductExpense(sc.nextDouble());
+        System.out.println("Enter service expense: ");
+        v.setServiceExpense(sc.nextDouble());
         
         System.out.println("Customer name: "+c.getName());
         System.out.println("Product Expense: "+v.getproductExpense());

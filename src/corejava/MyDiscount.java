@@ -99,13 +99,12 @@ public class MyDiscount {
         check = sc.next().toLowerCase().charAt(0);
         if(check=='y'){
             c.setMember(true);
+            System.out.println("Enter membership type premium/gold/silver/");
+            c.setMemberType(sc.next().toLowerCase());
         }
         else{
             c.setMember(false);
         }
-        
-        System.out.println("Enter membership type premium/gold/silver/");
-        c.setMemberType(sc.next().toLowerCase());
         
         Visit v = new Visit(c);
         System.out.println("Enter product expense: ");
